@@ -9,27 +9,6 @@ This project demonstrates how VLM + NLP + vector databases can solve this proble
 
 ---
 
-
-## 🏆 Why Better Than Vanilla CLIP?
-
-**Vanilla CLIP** encodes both images and text into the same embedding space, but it has limitations: it must encode every image at query time (slow for large datasets), produces 512-dimensional embeddings (less semantic richness), and lacks text preprocessing (raw queries often underperform). 
-
-**This Project Improves CLIP** by using a **hybrid architecture**:</br>
-(1) **Specialized embedding model (BGE-large)** generates 1024-dimensional semantic embeddings—2x richer than CLIP's 512-dim, trained specifically for text similarity rather than vision-language      alignment, resulting in better semantic matching for fashion descriptions.</br>
-(2) **Pre-processing pipeline** with Qwen2-VL generates detailed image captions and Qwen2.5 normalizes them, creating cleaner, more searchable text than raw image embeddings.</br>
-(3) **FAISS indexing** enables sub-second search across millions of items versus CLIP's O(n) comparison at query time.</br>
-(4) **CLIP as reranker only**, not primary search—retrieves top-50 candidates via fast semantic search, then CLIP visually reranks only these 50, achieving **99% accuracy improvement** while being **7x faster** on GPU.</br>
-(5) **Persistent storage** with PostgreSQL + FAISS means no re-encoding images on every search.</br>
-
-**Result**: Best of both worlds—BGE's superior semantic understanding for initial retrieval + CLIP's visual intelligence for final ranking = faster, more accurate fashion search than vanilla CLIP alone.</br>
-
-### System Architecture
-
-<img width="1761" height="2201" alt="intelligent_Search_Engine_Final_Arch drawio" src="https://github.com/user-attachments/assets/59f9d6a0-b057-4421-8c5c-6638cf207364" />
-
-
----
-
 ## 📋 Table of Contents
 
 - [Features](#features)
@@ -41,6 +20,78 @@ This project demonstrates how VLM + NLP + vector databases can solve this proble
 - [Performance](#performance)
 
 ---
+
+### System Architecture
+
+<img width="1761" height="2201" alt="intelligent_Search_Engine_Final_Arch drawio" src="https://github.com/user-attachments/assets/59f9d6a0-b057-4421-8c5c-6638cf207364" />
+
+---
+
+## 🏆 Why Better Than Vanilla CLIP?
+
+This project uses a **hybrid, production-ready architecture** that separates semantic retrieval from visual re-ranking:
+
+<table>
+<tr>
+<td width="30%"><strong>🔹 Specialized Semantic Embeddings</strong></td>
+<td>
+<ul>
+<li><strong>BGE-Large (1024-dim)</strong> vs CLIP's 512-dim vectors (2× richer)</li>
+<li>Trained specifically for <strong>text similarity</strong>, not vision-language alignment</li>
+<li>Better semantic matching for fashion descriptions and user intent</li>
+</ul>
+</td>
+</tr>
+
+<tr>
+<td width="30%"><strong>🔹 Advanced Pre-processing Pipeline</strong></td>
+<td>
+<ul>
+<li><strong>Qwen2-VL</strong> generates detailed, human-like image captions</li>
+<li><strong>Qwen2.5</strong> normalizes captions and user queries</li>
+<li>Produces clean, searchable text instead of raw image embeddings</li>
+</ul>
+</td>
+</tr>
+
+<tr>
+<td width="30%"><strong>🔹 Scalable Vector Search</strong></td>
+<td>
+<ul>
+<li><strong>FAISS indexing</strong> enables sub-second similarity search</li>
+<li>Replaces CLIP's O(n) brute-force comparison with efficient indexing</li>
+<li>Supports millions of items without performance degradation</li>
+</ul>
+</td>
+</tr>
+
+<tr>
+<td width="30%"><strong>🔹 CLIP as Re-ranker Only</strong></td>
+<td>
+<ul>
+<li>BGE-based semantic search retrieves <strong>top-N candidates</strong></li>
+<li>CLIP <strong>visually re-ranks</strong> only these N results</li>
+<li>Combines semantic understanding with visual accuracy</li>
+</ul>
+</td>
+</tr>
+
+<tr>
+<td width="30%"><strong>🔹 Persistent Storage</strong></td>
+<td>
+<ul>
+<li><strong>PostgreSQL</strong> stores metadata permanently</li>
+<li><strong>FAISS</strong> stores embeddings permanently</li>
+<li>Eliminates re-encoding images on every search request</li>
+</ul>
+</td>
+</tr>
+</table>
+
+**Result**: BGE's superior semantic understanding for initial retrieval + CLIP's visual intelligence for final ranking = faster, more accurate fashion search than vanilla CLIP alone.
+
+---
+
 
 ## ✨ Features
 
