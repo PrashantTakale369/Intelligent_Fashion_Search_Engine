@@ -1,0 +1,55 @@
+# Indexing Pipeline Configuration
+
+
+# 1 > models :
+
+models:
+
+  img_to_text:
+    name: "Qwen/Qwen2-VL-2B-Instruct"
+    path: "Qwen/Qwen2-VL-2B-Instruct"     # Transformers will auto-find in HuggingFace cache
+    # device: "cpu"  
+    device: "cuda"                      # GPU for faster processing
+  
+  text_normalization:
+    name: "Qwen/Qwen2.5-0.5B-Instruct"
+    path: "Qwen/Qwen2.5-0.5B-Instruct"    
+    device: "cuda"                       
+  
+
+  embedding:
+    name: "BAAI/bge-large-en-v1.5"
+    path: "BAAI/bge-large-en-v1.5"  
+    device: "cuda"                              
+    embedding_dim: 1024
+
+
+# 2 > data :
+
+# Dataset configuration
+dataset:
+  image_dir: "C:/Users/Admin/Downloads/Fashion_Pipline_Engines/Dataset/Orignal_Dataset" #Update all model_path fields with your local paths
+  supported_formats: [".jpg", ".jpeg", ".png"]
+  batch_size: 4           
+
+# Database configuration
+database:
+  postgres:
+    host: "localhost"
+    port: 5432
+    dbname: "fashion_search"
+    user: "postgres"
+    password: "1234"
+    table_name: "fashion_images"
+  
+  faiss:
+    index_path: "storage/faiss_index.bin"
+    index_type: "IndexFlatIP"               # Inner Product for cosine similarity
+    normalize_vectors: true
+    embedding_dim: 1024
+
+
+# Processing 
+processing:
+  log_level: "INFO"
+  save_interval: 25  # Save FAISS index every N images
