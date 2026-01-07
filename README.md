@@ -22,23 +22,8 @@ This project implements a two-stage AI pipeline for fashion image search:
 
 ### System Architecture
 
-```
-┌─────────────────────────────────────────────────────────────┐
-│                    INDEXING PIPELINE                        │
-├─────────────────────────────────────────────────────────────┤
-│  Image → Captioning → Normalization → Embedding → Storage  │
-│         (Qwen2-VL)   (Qwen2.5)       (BGE)     (PG+FAISS)  │
-└─────────────────────────────────────────────────────────────┘
-                            ↓
-┌─────────────────────────────────────────────────────────────┐
-│                   RETRIEVAL PIPELINE                        │
-├─────────────────────────────────────────────────────────────┤
-│  Query → Normalize → Embed → Semantic Search → CLIP Rerank │
-│         (Qwen2.5)   (BGE)    (FAISS Top-20)   (Top-10)    │
-└─────────────────────────────────────────────────────────────┘
-                            ↓
-                    Streamlit Web UI
-```
+<img width="1761" height="2201" alt="intelligent_Search_Engine_Final_Arch drawio" src="https://github.com/user-attachments/assets/59f9d6a0-b057-4421-8c5c-6638cf207364" />
+
 
 ## ✨ Features
 
