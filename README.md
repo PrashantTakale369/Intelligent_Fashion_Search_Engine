@@ -64,6 +64,7 @@ This project demonstrates how VLM + NLP + vector databases can solve this proble
 | Metadata Storage     | PostgreSQL                  |
 | Hardware             | GPU-supported (local)       |
 
+
 ## 📦 Installation
 
 ### 1. Clone Repository
@@ -192,64 +193,12 @@ python run_test.py
 
 ## ⚙️ Configuration
 
-### Indexing Configuration
-
-Edit `Indexing_Pipeline/config/indexing.yaml`:
-
-```yaml
-models:
-  image_to_text:
-    device: "cuda"  # or "cpu"
-    batch_size: 4
-  
-  text_normalization:
-    device: "cuda"
-  
-  embedding:
-    device: "cuda"
-    batch_size: 8
-
-database:
-  postgres:
-    host: "localhost"
-    password: "your_password"
-```
-
+See individual pipeline READMEs for detailed architecture:
+### Indexing Configuration 
+[Indexing Pipeline README](Indexing_Pipeline/README.md)
 ### Retrieval Configuration
+[Retrieval Pipeline README](Retrieval_Pipeline/README.md)
 
-Edit `Retrieval_Pipeline/config/retrieval.yaml`:
-
-```yaml
-search:
-  top_n: 20  # Semantic search results
-  top_k: 10  # Final results after reranking
-
-models:
-  reranking:
-    device: "cuda"
-```
-
-### Model Sizes
-
-- Qwen2-VL-2B-Instruct: ~4.5GB
-- Qwen2.5-0.5B-Instruct: ~1GB
-- BAAI/bge-large-en-v1.5: ~1.3GB
-- CLIP ViT-L/14: ~1.7GB
-- **Total:** ~8.5GB
-
-
-## FAISS Index
-- Type: IndexFlatIP (Inner Product)
-- Dimension: 1024
-- Normalized vectors for cosine similarity
-
-## 🎨 Example Queries
-
-- "A person in a bright yellow raincoat"
-- "Blue denim jacket"
-- "Red dress with black heels"
-- "White sneakers"
-- "Black leather bag"
 
 ## 🔍 Search Quality
 
@@ -268,9 +217,23 @@ The system uses a two-stage retrieval approach:
 This hybrid approach balances speed and accuracy.
 
 
-## 🤝 Contributing
+## Scalability & Performance
+  FAISS enables fast approximate nearest neighbor search
+  Batch processing during indexing
+  Separate storage for vectors and metadata
+  GPU acceleration for heavy model inference
 
-Contributions are welcome! See individual pipeline READMEs for detailed architecture:
-- [Indexing Pipeline README](Indexing_Pipeline/README.md)
-- [Retrieval Pipeline README](Retrieval_Pipeline/README.md)
+### Model Sizes
+
+- Qwen2-VL-2B-Instruct: ~4.5GB
+- Qwen2.5-0.5B-Instruct: ~1GB
+- BAAI/bge-large-en-v1.5: ~1.3GB
+- CLIP ViT-L/14: ~1.7GB
+- **Total:** ~8.5GB
+
+## FAISS Index
+- Type: IndexFlatIP (Inner Product)
+- Dimension: 1024
+- Normalized vectors for cosine similarity
+
 
