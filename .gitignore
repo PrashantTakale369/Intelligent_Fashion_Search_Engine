@@ -1,0 +1,29 @@
+# Dataset images (but keep folder structure)
+Dataset/Orignal_Dataset/*.jpg
+Dataset/Orignal_Dataset/*.jpeg
+Dataset/Orignal_Dataset/*.png
+
+# FAISS index files
+Indexing_Pipeline/storage/*.bin
+Indexing_Pipeline/storage/*.npy
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Environment
+venv/
+env/
+.env
+
+# IDE
+.vscode/
+.idea/
+
+# Model cache
+models/cache/
+
+# Logs
+*.log
