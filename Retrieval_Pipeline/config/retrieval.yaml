@@ -1,0 +1,36 @@
+database:
+  faiss:
+    ids_path: ../Indexing_Pipeline/storage/faiss_index_ids.npy
+    index_path: ../Indexing_Pipeline/storage/faiss_index.bin
+  postgres:
+    dbname: fashion_search
+    host: localhost
+    password: '1234'
+    port: 5432
+    table_name: fashion_images
+    user: postgres
+dataset:
+  image_dir: C:/Users/Admin/Downloads/Fashion_Pipline_Engines/Dataset/Orignal_Dataset
+models:
+  embedding:
+    device: cuda
+    embedding_dim: 1024
+    name: BAAI/bge-large-en-v1.5
+    path: BAAI/bge-large-en-v1.5
+  reranking:
+    device: cuda
+    image_size: 224
+    name: openai/clip-vit-large-patch14
+    path: openai/clip-vit-large-patch14
+  text_normalization:
+    device: cuda
+    name: Qwen/Qwen2.5-0.5B-Instruct
+    path: Qwen/Qwen2.5-0.5B-Instruct
+search:
+  top_k: 1
+  top_n: 20
+ui:
+  layout: wide
+  page_icon: search
+  results_per_row: 5
+  title: Fashion Search Engine
