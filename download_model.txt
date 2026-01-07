@@ -1,0 +1,24 @@
+
+
+
+
+Dataset Used Link :     
+https://drive.google.com/drive/folders/1AmMQMtgYGXIdS-tfDHuOyPdSVdrnTOFm?usp=sharing
+
+
+
+
+1 >  Download the embedding model: BAAI/bge-large-en-v1.5
+    python -c "from transformers import AutoTokenizer, AutoModel; AutoTokenizer.from_pretrained('BAAI/bge-large-en-v1.5'); AutoModel.from_pretrained('BAAI/bge-large-en-v1.5')"
+
+2 >  Download the text normalization model: Qwen/Qwen2.5-0.5B-Instruct
+    python -c "from transformers import AutoModelForCausalLM, AutoTokenizer; AutoTokenizer.from_pretrained('Qwen/Qwen2.5-0.5B-Instruct'); AutoModelForCausalLM.from_pretrained('Qwen/Qwen2.5-0.5B-Instruct')"
+
+3 > Download the image-to-text model: Qwen/Qwen2-VL-2B-Instruct
+    python -c "from transformers import Qwen2VLForConditionalGeneration, AutoProcessor; AutoProcessor.from_pretrained('Qwen/Qwen2-VL-2B-Instruct'); Qwen2VLForConditionalGeneration.from_pretrained('Qwen/Qwen2-VL-2B-Instruct')"
+
+
+
+.\venv\Scripts\activate
+
+pip install --upgrade "transformers>=4.45.0" "torch" "qwen-vl-utils" "accelerate"
