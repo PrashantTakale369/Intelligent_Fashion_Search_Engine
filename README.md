@@ -7,9 +7,17 @@ It combines computer vision, natural language processing, and vector similarity 
 Traditional e-commerce search relies on fixed filters and manual tagging, which often fails to capture user intent.
 This project demonstrates how VLM + NLP + vector databases can solve this problem in a scalable and intelligent way.
 
+---
+
+### System Architecture
+
+<img width="1761" height="2201" alt="intelligent_Search_Engine_Final_Arch drawio" src="https://github.com/user-attachments/assets/59f9d6a0-b057-4421-8c5c-6638cf207364" />
+
+
+---
+
 ## 📋 Table of Contents
 
-- [System Architecture](#system-architecture)
 - [Features](#features)
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
@@ -18,11 +26,7 @@ This project demonstrates how VLM + NLP + vector databases can solve this proble
 - [Configuration](#configuration)
 - [Performance](#performance)
 
-
-### System Architecture
-
-<img width="1761" height="2201" alt="intelligent_Search_Engine_Final_Arch drawio" src="https://github.com/user-attachments/assets/59f9d6a0-b057-4421-8c5c-6638cf207364" />
-
+---
 
 ## ✨ Features
 
@@ -42,6 +46,9 @@ This project demonstrates how VLM + NLP + vector databases can solve this proble
   - Real-time search results
   - Adjustable search parameters
 
+--- 
+
+
 ## 🔧 Prerequisites
 
 | Component            | Requirement                                           |
@@ -51,6 +58,8 @@ This project demonstrates how VLM + NLP + vector databases can solve this proble
 | GPU                  | NVIDIA GPU with CUDA 13.0+ (optional but recommended) |
 | Memory (RAM)         | 8 GB or higher                                        |
 | Disk Space           | 10 GB or more (for models and indexes)                |
+
+---
 
 ## Technology Stack
 
@@ -64,6 +73,7 @@ This project demonstrates how VLM + NLP + vector databases can solve this proble
 | Metadata Storage     | PostgreSQL                  |
 | Hardware             | GPU-supported (local)       |
 
+---
 
 ## 📦 Installation
 
@@ -92,10 +102,6 @@ pip install -r requirements.txt
 ### 4. Set Up PostgreSQL
 
 ```bash
-# Start PostgreSQL service
-# Windows: services.msc → PostgreSQL
-# Linux: sudo systemctl start postgresql
-
 # Create database
 psql -U postgres -c "CREATE DATABASE fashion_search;"
 ```
@@ -107,7 +113,11 @@ cd Indexing_Pipeline
 python setup_database.py
 ```
 
-## 🚀 Usage
+---
+
+## 🚀 Start Processing 
+
+---
 
 ### Indexing Images
 
@@ -128,6 +138,8 @@ python run_indexing.py
 ✓ Built FAISS index 
 ```
 
+--- 
+
 ### Running Search Interface
 
 Launch the Streamlit web application:
@@ -146,6 +158,8 @@ Test retrieval pipeline directly:
 cd Retrieval_Pipeline
 python run_test.py
 ```
+
+--- 
 
 ## 📁 Main Architecture 
 
