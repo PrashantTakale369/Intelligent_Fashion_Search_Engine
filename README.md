@@ -1,9 +1,14 @@
 # 🔍 Fashion Search Engine
 
-A complete AI-powered fashion image search engine with semantic search and CLIP-based reranking, featuring GPU acceleration and a modern Streamlit interface.
+The Intelligent Fashion Search Engine is an AI-powered fashion retrieval system that allows users to search fashion products using natural language text queries (e.g., ""A person in a bright yellow raincoat") instead of traditional filters.
+
+It combines computer vision, natural language processing, and vector similarity search to retrieve visually and semantically similar fashion items efficiently, even at large scale (up to 1 million images).
+
+Traditional e-commerce search relies on fixed filters and manual tagging, which often fails to capture user intent.
+This project demonstrates how VLM + NLP + vector databases can solve this problem in a scalable and intelligent way.
 
 ## 📋 Table of Contents
-- [Overview](#overview)
+
 - [System Architecture](#system-architecture)
 - [Features](#features)
 - [Prerequisites](#prerequisites)
@@ -13,12 +18,6 @@ A complete AI-powered fashion image search engine with semantic search and CLIP-
 - [Configuration](#configuration)
 - [Performance](#performance)
 
-## 🎯 Overview
-
-This project implements a two-stage AI pipeline for fashion image search:
-
-1. **Indexing Pipeline**: Processes fashion images through multiple AI models to generate searchable embeddings
-2. **Retrieval Pipeline**: Performs semantic search with CLIP reranking for accurate fashion item discovery
 
 ### System Architecture
 
@@ -33,12 +32,6 @@ This project implements a two-stage AI pipeline for fashion image search:
   - Semantic embeddings with BAAI/bge-large-en-v1.5 (1024-dim)
   - Visual reranking with CLIP ViT-L/14
 
-- **High Performance**
-  - GPU acceleration (CUDA support)
-  - Batch processing for efficiency
-  - 7x faster with GPU vs CPU
-  - Processes 7 images in ~38 seconds
-
 - **Robust Storage**
   - PostgreSQL for metadata
   - FAISS for vector similarity search
@@ -48,23 +41,25 @@ This project implements a two-stage AI pipeline for fashion image search:
   - Interactive Streamlit web UI
   - Real-time search results
   - Adjustable search parameters
-  - Visual result display with scores
 
 ## 🔧 Prerequisites
 
-- Python 3.13+
-- PostgreSQL 18
-- NVIDIA GPU with CUDA 13.0+ (optional but recommended)
-- 8GB+ RAM
-- 10GB+ disk space for models
+| Component            | Requirement                                           |
+| -------------------- | ----------------------------------------------------- |
+| Programming Language | Python 3.13+                                          |
+| Database             | PostgreSQL 18                                         |
+| GPU                  | NVIDIA GPU with CUDA 13.0+ (optional but recommended) |
+| Memory (RAM)         | 8 GB or higher                                        |
+| Disk Space           | 10 GB or more (for models and indexes)                |
+
 
 ## 📦 Installation
 
 ### 1. Clone Repository
 
 ```bash
-git clone https://github.com/PrashantTakale369/fashion.git
-cd Fashion_Pipline_Engines
+git clone https://github.com/PrashantTakale369/Intelligent_Fashion_Search_Engine.git
+cd Intelligent_Fashion_Search_Engine
 ```
 
 ### 2. Set Up Virtual Environment
