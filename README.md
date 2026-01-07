@@ -1,6 +1,6 @@
 # 🔍 Fashion Search Engine
 
-The Intelligent Fashion Search Engine is an AI-powered fashion retrieval system that allows users to search fashion products using natural language text queries (e.g., ""A person in a bright yellow raincoat") instead of traditional filters.
+The Intelligent Fashion Search Engine is an AI-powered fashion retrieval system that allows users to search fashion products using natural language text queries (e.g., "A person in a bright yellow raincoat") instead of traditional filters.
 
 It combines computer vision, natural language processing, and vector similarity search to retrieve visually and semantically similar fashion items efficiently, even at large scale (up to 1 million images).
 
@@ -52,6 +52,17 @@ This project demonstrates how VLM + NLP + vector databases can solve this proble
 | Memory (RAM)         | 8 GB or higher                                        |
 | Disk Space           | 10 GB or more (for models and indexes)                |
 
+## Technology Stack
+
+| Component            | Technology                  |
+| -------------------- | --------------------------- |
+| Programming Language | Python                      |
+| Web Interface        | Streamlit                   |
+| Image Captioning     | Vision-Language Model       |
+| Embeddings           | CLIP-based Multimodal Model |
+| Vector Database      | FAISS                       |
+| Metadata Storage     | PostgreSQL                  |
+| Hardware             | GPU-supported (local)       |
 
 ## 📦 Installation
 
@@ -108,12 +119,12 @@ python run_indexing.py
 
 **Expected Output:**
 ```
-✓ Loaded 7 images
-✓ Generated captions (Qwen2-VL)
-✓ Normalized text (Qwen2.5)
-✓ Created embeddings (BGE)
-✓ Saved to PostgreSQL (21 records)
-✓ Built FAISS index (21 vectors)
+✓ Loaded no of  images
+✓ Generated captions
+✓ Normalized text 
+✓ Created embeddings
+✓ Saved to PostgreSQL 
+✓ Built FAISS index 
 ```
 
 ### Running Search Interface
@@ -150,13 +161,14 @@ python run_test.py
 
 **Process Flow:**
 1. Load images from `Dataset/`
-2. Generate 3 captions per image using Qwen2-VL
+2. Generate captions per image using Qwen2-VL
 3. Normalize each caption to extract key features
 4. Create 1024-dim embeddings with BGE
 5. Store metadata in PostgreSQL
 6. Build FAISS index for vector search
 
 **Configuration:** `Indexing_Pipeline/config/indexing.yaml`
+
 
 ### Retrieval Pipeline
 
@@ -172,9 +184,9 @@ python run_test.py
 **Process Flow:**
 1. Normalize user query
 2. Generate query embedding
-3. FAISS semantic search (top-20)
-4. CLIP reranking (top-10)
-5. Return ranked results with scores
+3. FAISS semantic search (top-N)
+4. CLIP reranking (top-K)
+5. Return ranked results 
 
 **Configuration:** `Retrieval_Pipeline/config/retrieval.yaml`
 
@@ -217,46 +229,16 @@ models:
     device: "cuda"
 ```
 
-## 📊 Performance
-
-### Hardware Specs (Test System)
-- GPU: NVIDIA RTX 4060 (8GB VRAM)
-- CPU: 24 threads
-- RAM: 16GB
-- CUDA: 13.0
-
-### Benchmark Results
-
-| Operation | GPU Time | CPU Time | Speedup |
-|-----------|----------|----------|---------|
-| Image Captioning (7 images) | ~25s | ~150s | 6x |
-| Text Normalization (21 captions) | ~8s | ~45s | 5.6x |
-| Embedding Generation (21 texts) | ~5s | ~40s | 8x |
-| **Total Indexing** | **~38s** | **~235s** | **~7x** |
-| FAISS Search | <0.1s | <0.1s | - |
-| CLIP Reranking (20 images) | ~1s | ~8s | 8x |
-
 ### Model Sizes
+
 - Qwen2-VL-2B-Instruct: ~4.5GB
 - Qwen2.5-0.5B-Instruct: ~1GB
 - BAAI/bge-large-en-v1.5: ~1.3GB
 - CLIP ViT-L/14: ~1.7GB
 - **Total:** ~8.5GB
 
-## 🗃️ Database Schema
 
-### PostgreSQL Table: `fashion_images`
-
-```sql
-CREATE TABLE fashion_images (
-    image_id SERIAL PRIMARY KEY,
-    image_path TEXT NOT NULL UNIQUE,
-    normalized_text TEXT NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-```
-
-### FAISS Index
+## FAISS Index
 - Type: IndexFlatIP (Inner Product)
 - Dimension: 1024
 - Normalized vectors for cosine similarity
@@ -285,20 +267,6 @@ The system uses a two-stage retrieval approach:
 
 This hybrid approach balances speed and accuracy.
 
-## 📝 Quick Start
-
-```bash
-# 1. Index your images
-cd Indexing_Pipeline
-python run_indexing.py
-
-# 2. Launch search interface
-cd ../Retrieval_Pipeline
-streamlit run app.py
-
-# 3. Search for fashion items!
-# Open http://localhost:8501 in your browser
-```
 
 ## 🤝 Contributing
 
@@ -306,14 +274,3 @@ Contributions are welcome! See individual pipeline READMEs for detailed architec
 - [Indexing Pipeline README](Indexing_Pipeline/README.md)
 - [Retrieval Pipeline README](Retrieval_Pipeline/README.md)
 
-## 📄 License
-
-This project uses models with various licenses. Please check individual model licenses:
-- Qwen models: Apache 2.0
-- BGE: MIT
-- CLIP: MIT
-
-## 🔗 Links
-
-- Repository: https://github.com/PrashantTakale369/fashion
-- Models: HuggingFace Model Hub
