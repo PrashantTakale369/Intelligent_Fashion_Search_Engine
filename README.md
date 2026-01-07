@@ -147,49 +147,9 @@ cd Retrieval_Pipeline
 python run_test.py
 ```
 
-## 📁 Pipeline Details
+## 📁 Project Full Architecture 
 
-### Indexing Pipeline
-
-**Location:** `Indexing_Pipeline/`
-
-**Components:**
-- `models/` - AI model wrappers (Qwen2-VL, Qwen2.5, BGE)
-- `logic/` - Processing logic (captioning, normalization, embedding)
-- `storage/` - Database writers (PostgreSQL, FAISS)
-- `data/` - Dataset loading and validation
-- `utils/` - Logging and batching utilities
-
-**Process Flow:**
-1. Load images from `Dataset/`
-2. Generate captions per image using Qwen2-VL
-3. Normalize each caption to extract key features
-4. Create 1024-dim embeddings with BGE
-5. Store metadata in PostgreSQL
-6. Build FAISS index for vector search
-
-**Configuration:** `Indexing_Pipeline/config/indexing.yaml`
-
-
-### Retrieval Pipeline
-
-**Location:** `Retrieval_Pipeline/`
-
-**Components:**
-- `models/` - CLIP reranking model
-- `logic/` - Query processing and reranking
-- `storage/` - FAISS search and PostgreSQL reader
-- `app.py` - Streamlit web interface
-- `retrieval_pipeline.py` - Main orchestrator
-
-**Process Flow:**
-1. Normalize user query
-2. Generate query embedding
-3. FAISS semantic search (top-N)
-4. CLIP reranking (top-K)
-5. Return ranked results 
-
-**Configuration:** `Retrieval_Pipeline/config/retrieval.yaml`
+Fashion_Search_Engine/ │ ├── 📄 app.py # Streamlit Web UI (Main Entry Point) ├── 📄 requirements.txt # Python Dependencies ├── 📄 README.md # Main Documentation (This File) ├── 📄 download_model.txt # Model Download Instructions ├── 📄 how_to_run.txt # Quick Start Guide │ ├── 📁 Dataset/ # Fashion Images Storage │ └── 📁 Orignal_Dataset/ # Raw Fashion Images │ ├── 🖼️ image_001.jpg │ ├── 🖼️ image_002.png │ └── 🖼️ ... │ ├── 📁 Indexing_Pipeline/ # Image Processing & Database Creation │ │ │ ├── 📄 __init__.py # Package Initializer │ ├── 📄 README.md # Indexing Pipeline Documentation │ ├── 📄 run_indexing.py # Main Indexing Entry Point │ ├── 📄 test_models_only.py # Model Testing Without Database │ │ │ ├── 📁 config/ # Configuration Management │ │ └── 📄 indexing.yaml # Database, Models, Paths Settings │ │ │ ├── 📁 models/ # AI Model Wrappers │ │ ├── 📄 __init__.py │ │ ├── 📄 img_to_text_model.py # Qwen2-VL-2B (Image → Caption) │ │ ├── 📄 text_norm_model.py # Qwen2.5-0.5B (Caption → Features) │ │ └── 📄 embedding_model.py # BGE-large (Features → Vectors) │ │ │ ├── 📁 logic/ # Business Logic & Workflows │ │ ├── 📄 __init__.py │ │ ├── 📄 caption_logic.py # Caption Generation Pipeline │ │ ├── 📄 normalization_logic.py # Feature Extraction Pipeline │ │ └── 📄 embedding_logic.py # Vector Creation Pipeline │ │ │ ├── 📁 storage/ # Database Operations │ │ ├── 📄 __init__.py │ │ ├── 📄 schema.sql # PostgreSQL Database Schema │ │ ├── 📄 postgres_writer.py # PostgreSQL Write Operations │ │ ├── 📄 faiss_writer.py # FAISS Index Writer │ │ ├── 💾 faiss_index.bin # Generated: Vector Index File │ │ └── 💾 faiss_index_ids.npy # Generated: ID Mapping File │ │ │ ├── 📁 data/ # Dataset Management │ │ ├── 📄 __init__.py │ │ ├── 📄 dataset_loader.py # Image Loading & Validation │ │ └── 📄 image_registry.py # Image ID Tracking │ │ │ ├── 📁 utils/ # Helper Utilities │ │ ├── 📄 __init__.py │ │ ├── 📄 logger.py # Logging Configuration │ │ ├── 📄 batching.py # Batch Processing Utilities │ │ └── 📄 validation.py # Input Validation Functions │ │ │ └── 📁 scripts/ # Setup & Maintenance Scripts │ ├── 📄 README.md # Scripts Documentation │ ├── 📄 setup_database.py # Database Initialization │ └── 📄 clear_db.py # Database Cleanup Script │ ├── 📁 Retrieval_Pipeline/ # Search & Query Engine │ │ │ ├── 📄 __init__.py # Package Initializer │ ├── 📄 README.md # Retrieval Pipeline Documentation │ ├── 📄 retrieval_pipeline.py # Main Retrieval Orchestrator │ ├── 📄 run_test.py # Command-Line Search Testing │ │ │ ├── 📁 config/ # Configuration Management │ │ └── 📄 retrieval.yaml # Search Parameters, Model Settings │ │ │ ├── 📁 models/ # AI Model Wrappers │ │ ├── 📄 __init__.py │ │ └── 📄 clip_reranking_model.py # CLIP ViT-L/14 (Visual Reranking) │ │ │ ├── 📁 logic/ # Business Logic & Workflows │ │ ├── 📄 __init__.py │ │ ├── 📄 query_normalization.py # Query Text Normalization │ │ ├── 📄 query_embedding.py # Query Vector Generation │ │ └── 📄 reranking.py # CLIP-based Result Reranking │ │ │ ├── 📁 storage/ # Database Operations │ │ ├── 📄 __init__.py │ │ ├── 📄 faiss_searcher.py # FAISS Vector Search │ │ └── 📄 postgres_reader.py # PostgreSQL Read Operations │ │ │ └── 📁 utils/ # Helper Utilities │ ├── 📄 __init__.py │ └── 📄 logger.py # Logging Configuration │ └── 📁 ui/ # User Interface Components ├── 📄 __init__.py └── 📄 ui_components.py # Streamlit UI Widgets & Layouts
 
 ## ⚙️ Configuration
 
