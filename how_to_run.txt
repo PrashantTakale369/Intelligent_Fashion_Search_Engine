@@ -1,0 +1,137 @@
+==================================================================================
+FASHION SEARCH ENGINE - SETUP & RUN GUIDE
+==================================================================================
+
+STEP 1: CLONE THE REPOSITORY
+-----------------------------
+git clone https://github.com/PrashantTakale369/fashion.git
+cd fashion
+
+
+STEP 2: INSTALL DEPENDENCIES
+-----------------------------
+pip install -r requirements.txt
+
+
+STEP 3: SETUP POSTGRESQL DATABASE
+----------------------------------
+1. Install PostgreSQL (if not already installed)
+2. Create database and table:
+   
+   cd Indexing_Pipeline/scripts
+   python setup_database.py
+
+   (This creates 'fashion_search' database and 'fashion_images' table)
+
+3. To start fresh (clear existing data):
+   
+   python clear_db.py
+   
+   (This removes all indexed data - use this for a clean start)
+
+
+STEP 4: DOWNLOAD MODELS
+------------------------
+Download the following models and place them in your project:
+
+1. Qwen2-VL-2B-Instruct (Image Captioning)
+2. Qwen2.5-0.5B-Instruct (Text Normalization)  
+3. BAAI/bge-large-en-v1.5 (Embeddings)
+4. CLIP ViT-L/14 (Reranking)
+
+See download_model.txt for model download links and paths.
+
+
+STEP 5: PREPARE YOUR DATASET
+-----------------------------
+**IMPORTANT: Dataset folder is now created but empty!**
+
+1. Navigate to: Dataset/Orignal_Dataset/
+2. Add your fashion images (.jpg files) to this folder
+3. Recommended sources:
+   - DeepFashion dataset
+   - Fashionpedia dataset
+   - Web scraping fashion websites
+   
+See Dataset/Orignal_Dataset/README.md for detailed instructions.
+
+
+STEP 6: UPDATE MODEL PATHS IN CONFIG FILES
+-------------------------------------------
+Edit the following configuration files with your local model paths:
+
+1. Indexing_Pipeline/config/indexing.yaml
+   - Update all model_path fields with your local paths
+   
+2. Retrieval_Pipeline/config/retrieval.yaml
+   - Update all model_path fields with your local paths
+
+
+STEP 7: RUN INDEXING PIPELINE
+------------------------------
+cd Indexing_Pipeline
+python run_indexing.py
+
+This will:
+- Generate captions for all images
+- Normalize text
+- Create embeddings
+- Store in PostgreSQL database
+- Build FAISS index
+
+(Processing time: ~2-3 seconds per image on RTX 4060)
+
+
+STEP 8: RUN THE STREAMLIT WEB APP
+----------------------------------
+cd ..
+python -m streamlit run app.py
+
+The app will open at: http://localhost:8501
+
+
+STEP 9: TEST THE SEARCH
+------------------------
+1. Open the web app in your browser
+2. Enter a search query (e.g., "red dress", "blue jeans")
+3. Adjust number of results (1-10)
+4. Click "Search" button
+5. View results with similarity scores
+
+
+==================================================================================
+TROUBLESHOOTING
+==================================================================================
+
+Issue: ModuleNotFoundError for faiss
+Solution: pip install faiss-cpu
+
+Issue: Database connection error
+Solution: Check PostgreSQL is running and credentials in config files
+
+Issue: CUDA out of memory
+Solution: Reduce batch_size in indexing.yaml
+
+Issue: Streamlit not starting
+Solution: Use "python -m streamlit run app.py" instead of "streamlit run app.py"
+
+Issue: No search results
+Solution: Verify FAISS index exists at Indexing_Pipeline/storage/faiss_index.bin
+
+
+==================================================================================
+OPTIONAL: CLEAR DATABASE AND RE-INDEX
+==================================================================================
+
+To start fresh:
+cd Indexing_Pipeline/scripts
+python clear_db.py
+cd ..
+python run_indexing.py
+
+
+==================================================================================
+For detailed documentation, see:
+- Indexing_Pipeline/README.md (Complete indexing guide)
+- Retrieval_Pipeline/README.md (Complete retrieval guide)
+==================================================================================
