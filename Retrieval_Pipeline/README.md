@@ -6,6 +6,10 @@ This pipeline lets you search through your fashion images using everyday languag
 
 ---
 
+## Main Architectre
+<img width="1517" height="1212" alt="Retrieval_Pipeline drawio" src="https://github.com/user-attachments/assets/9d821c06-64c9-403e-a15f-eb598a9074eb" />
+
+
 ## 📖 Table of Contents
 
 1. [What This Pipeline Does](#what-this-pipeline-does)
