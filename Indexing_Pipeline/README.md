@@ -40,6 +40,46 @@ Your Fashion Image → AI Processing → Searchable Database
 
 ---
 
+## Main Architectre
+
+```
+Indexing_Pipeline/
+│
+├── 📄 run_indexing.py                # Main execution script
+├── 📄 test_models_only.py            # Model testing
+│
+├── 📁 config/
+│   └── indexing.yaml                 # Pipeline configuration
+│
+├── 📁 data/
+│   ├── dataset_loader.py             # Load images from Dataset/
+│   └── image_registry.py             # Track processed images
+│
+├── 📁 models/
+│   ├── img_to_text_model.py          # Qwen2-VL (Image → Caption)
+│   ├── text_norm_model.py            # Qwen2.5 (Normalize text)
+│   └── embedding_model.py            # BGE (Text → Vector)
+│
+├── 📁 logic/
+│   ├── caption_logic.py              # Captioning orchestration
+│   ├── normalization_logic.py        # Normalization orchestration
+│   └── embedding_logic.py            # Embedding generation
+│
+├── 📁 storage/
+│   ├── postgres_writer.py            # Save metadata to DB
+│   ├── faiss_writer.py               # Save vectors to FAISS
+│   └── schema.sql                    # Database schema
+│
+├── 📁 scripts/
+│   ├── setup_database.py             # Initialize DB
+│   └── clear_db.py                   # Clear all data
+│
+└── 📁 utils/
+    ├── batching.py                   # Batch processing
+    ├── logger.py                     # Logging
+    └── validation.py                 # Input validation
+```
+
 ## 💻 What You Need Before Starting
 
 ### Required Software
