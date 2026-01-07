@@ -6,6 +6,11 @@ This pipeline processes your fashion images through AI models and creates a sear
 
 ---
 
+## Pipeline Flow Architectre
+<img width="1451" height="802" alt="Index_Pipline drawio" src="https://github.com/user-attachments/assets/32ff1dca-c773-427f-90a3-d10ab6e1ef8f" />
+
+---
+
 ## 📖 Table of Contents
 
 1. [What This Pipeline Does](#what-this-pipeline-does)
