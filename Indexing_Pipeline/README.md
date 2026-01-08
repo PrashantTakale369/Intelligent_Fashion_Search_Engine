@@ -231,44 +231,6 @@ python Indexing_Pipeline/run_indexing.py
 
 ---
 
-### What Happens When You Run It?
-
-The pipeline will process each image through these steps:
-
-```
-Step 1: Load Images
-  → Scanning Dataset/Orignal_Dataset/...
-  → Found 4 images
-
-Step 2: Generate Captions (AI Model 1)
-  → Image 1: "A person wearing a blue plaid shirt..."
-  → Image 2: "A person in a red jacket..."
-  → Progress: [████████████████████] 4/4
-
-Step 3: Normalize Text (AI Model 2)
-  → Extracting features...
-  → "shirt | blue | plaid | short sleeve | ..."
-  → Progress: [████████████████████] 4/4
-
-Step 4: Store in PostgreSQL
-  → Inserting records into fashion_images table...
-  → ✓ Saved 4 records
-
-Step 5: Generate Embeddings (AI Model 3)
-  → Creating 1024-dim vectors...
-  → Progress: [████████████████████] 4/4
-
-Step 6: Build FAISS Index
-  → Adding vectors to index...
-  → ✓ Saved faiss_index.bin
-  → ✓ Saved faiss_index_ids.npy
-
- INDEXING COMPLETE!
-   Processed: 4 images
-   Time: 38 seconds (GPU) or 4.5 minutes (CPU)
-```
----
-
 ### Output Files
 
 After running successfully, you'll find:
