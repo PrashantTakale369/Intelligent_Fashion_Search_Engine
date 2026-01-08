@@ -1,17 +1,16 @@
-# 🔍 Fashion Search Engine
+# 🔍 Fashion Search Engine : 
 
-The Intelligent Fashion Search Engine is an AI-powered fashion retrieval system that allows users to search fashion products using natural language text queries (e.g., "A person in a bright yellow raincoat") instead of traditional filters.
+An AI-powered fashion image search system that allows users to find fashion images using natural language text queries.The system understands clothing descriptions, colors, accessories, and context by combining Vision-Language Models, Text Normalization, Vector Search, and Re-Ranking.
 
-It combines computer vision, natural language processing, and vector similarity search to retrieve visually and semantically similar fashion items efficiently, even at large scale (up to 1 million images).
-
+This repository focuses on the Indexing Pipeline (Offline) and the Retrieval Pipeline (Online) used in real-world industry systems.
 Traditional e-commerce search relies on fixed filters and manual tagging, which often fails to capture user intent.
 This project demonstrates how VLM + NLP + vector databases can solve this problem in a scalable and intelligent way.
 
 ---
 
-## 📋 Table of Contents
+## 📋 Table of Contents : 
 
-- [Features](#features)
+- [Key Features](#Key_Features)
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
 - [Usage](#usage)
@@ -21,108 +20,97 @@ This project demonstrates how VLM + NLP + vector databases can solve this proble
 
 ---
 
-### System Architecture
+## ✨ Key Features : 
+
+1. Natural language fashion search (no hard-coded filters)
+2. Image → Text understanding using Vision-Language Models
+3. Robust text normalization using LLMs
+4. Fast semantic search using FAISS (vector database)
+5. Accurate results using CLIP-based re-ranking
+6. able metadata storage using PostgreSQL
+7. Fully offline (all models run locally)
+
+- **Multi-Model AI Pipeline**
+  
+  - Image captioning with    : Qwen2-VL-2B-Instruct
+  - Text normalization with  : Qwen2.5-0.5B-Instruct
+  - Semantic embeddings with : BAAI/bge-large-en-v1.5 (1024-dim)
+  - Visual reranking with    :  CLIP ViT-L/14
+
+- **Robust Storage**
+  
+  - PostgreSQL for metadata : ( image id , image path )  for fast Retrievel
+  - FAISS for vector similarity search
+  - Automatic deduplication
+
+- **Modern Interface**
+  
+  - Interactive Streamlit web UI
+  - Real-time search results 
+  - Adjustable search parameters ( Top - K )
+    
+--- 
+
+## 🧩 System Architecture Overview : 
+
+| Stage              | What Happens               | Concept Used            |
+| ------------------ | -------------------------- | ----------------------- |
+| Image Captioning   | Converts image to text     | Vision-Language Model   |
+| Text Normalization | Cleans & standardizes text | LLM Text Reasoning      |
+| Embedding          | Converts text to vectors   | Semantic Embeddings     |
+| Vector Storage     | Stores embeddings          | Vector Database (FAISS) |
+| Retrieval          | Finds similar vectors      | Cosine Similarity       |
+| Re-Ranking         | Refines top results        | Cross-Modal Similarity  |
+
+---
+
+
+### System Architecture : 
 
 <img width="1761" height="2201" alt="intelligent_Search_Engine_Final_Arch drawio" src="https://github.com/user-attachments/assets/59f9d6a0-b057-4421-8c5c-6638cf207364" />
 
 ---
 
-## 🏆 Why Better Than Vanilla CLIP?
+## 🏆 Why Better Than Vanilla CLIP? : 
 
-This project uses a **hybrid, production-ready architecture** that separates semantic retrieval from visual re-ranking:
+1. First: What is a Vanilla CLIP System ?
 
-<table>
-<tr>
-<td width="30%"><strong>🔹 Specialized Semantic Embeddings</strong></td>
-<td>
-<ul>
-<li><strong>BGE-Large (1024-dim)</strong> vs CLIP's 512-dim vectors (2× richer)</li>
-<li>Trained specifically for <strong>text similarity</strong>, not vision-language alignment</li>
-<li>Better semantic matching for fashion descriptions and user intent</li>
-</ul>
-</td>
-</tr>
+  Vanilla CLIP approach in a simple way :
+      a.Encode all images using CLIP Image Encoder
+      b.Encode user query using CLIP Text Encoder
+      c.Compare both embeddings
+      d.Return top results
+   Direct Cross-Modal Similarity
 
-<tr>
-<td width="30%"><strong>🔹 Advanced Pre-processing Pipeline</strong></td>
-<td>
-<ul>
-<li><strong>Qwen2-VL</strong> generates detailed, human-like image captions</li>
-<li><strong>Qwen2.5</strong> normalizes captions and user queries</li>
-<li>Produces clean, searchable text instead of raw image embeddings</li>
-</ul>
-</td>
-</tr>
+2. Our System
 
-<tr>
-<td width="30%"><strong>🔹 Scalable Vector Search</strong></td>
-<td>
-<ul>
-<li><strong>FAISS indexing</strong> enables sub-second similarity search</li>
-<li>Replaces CLIP's O(n) brute-force comparison with efficient indexing</li>
-<li>Supports millions of items without performance degradation</li>
-</ul>
-</td>
-</tr>
+   1. Deep Image Understanding
 
-<tr>
-<td width="30%"><strong>🔹 CLIP as Re-ranker Only</strong></td>
-<td>
-<ul>
-<li>BGE-based semantic search retrieves <strong>top-N candidates</strong></li>
-<li>CLIP <strong>visually re-ranks</strong> only these N results</li>
-<li>Combines semantic understanding with visual accuracy</li>
-</ul>
-</td>
-</tr>
-
-<tr>
-<td width="30%"><strong>🔹 Persistent Storage</strong></td>
-<td>
-<ul>
-<li><strong>PostgreSQL</strong> stores metadata permanently</li>
-<li><strong>FAISS</strong> stores embeddings permanently</li>
-<li>Eliminates re-encoding images on every search request</li>
-</ul>
-</td>
-</tr>
-</table>
-
-**Result**: BGE's superior semantic understanding for initial retrieval + CLIP's visual intelligence for final ranking = faster, more accurate fashion search than vanilla CLIP alone.
-
----
+      > Vanilla CLIP
+            Image to embedding directly
+            No explicit understanding of:
+              1. Clothes
+              2. Colors
+              3. Accessories
+              4. Context
+      > Our System 
+        > Image to  *Rich text caption*  then embedding
+        > CLIP “looks” at the image but our system understands and explains the image
 
 
-## ✨ Features
+  2. LLM-Based Text Normalization
+          
+   > Normalizes both:
+      1. Image captions
+      2. User queries
+  
+  3. Two-Stage Retrieval
+     > Stage 1: FAISS semantic search (Top 20)
+     > Stage 2: CLIP re-ranking (Top K)
 
-- **Multi-Model AI Pipeline**
-  - Image captioning with Qwen2-VL-2B-Instruct
-  - Text normalization with Qwen2.5-0.5B-Instruct
-  - Semantic embeddings with BAAI/bge-large-en-v1.5 (1024-dim)
-  - Visual reranking with CLIP ViT-L/14
-
-- **Robust Storage**
-  - PostgreSQL for metadata
-  - FAISS for vector similarity search
-  - Automatic deduplication
-
-- **Modern Interface**
-  - Interactive Streamlit web UI
-  - Real-time search results
-  - Adjustable search parameters
-
---- 
-
-
-## 🔧 Prerequisites
-
-| Component            | Requirement                                           |
-| -------------------- | ----------------------------------------------------- |
-| Programming Language | Python 3.13+                                          |
-| Database             | PostgreSQL 18                                         |
-| GPU                  | NVIDIA GPU with CUDA 13.0+ (optional but recommended) |
-| Memory (RAM)         | 8 GB or higher                                        |
-| Disk Space           | 10 GB or more (for models and indexes)                |
+   Why this is better
+     1. Fast search + precise ranking
+     2. Candidate Generation + Re-Ranking
 
 ---
 
@@ -137,6 +125,22 @@ This project uses a **hybrid, production-ready architecture** that separates sem
 | Vector Database      | FAISS                       |
 | Metadata Storage     | PostgreSQL                  |
 | Hardware             | GPU-supported (local)       |
+
+---
+
+
+# SetUp : ( Offline +  Online )
+
+
+## 🔧 Prerequisites
+
+| Component            | Requirement                                           |
+| -------------------- | ----------------------------------------------------- |
+| Programming Language | Python 3.13+                                          |
+| Database             | PostgreSQL 18                                         |
+| GPU                  | NVIDIA GPU with CUDA (optional but recommended)       |
+| Memory (RAM)         | 8 GB or higher                                        |
+| Disk Space           | ~10 GB (for models and indexes)                       |
 
 ---
 
@@ -184,7 +188,7 @@ python setup_database.py
 
 ---
 
-### Indexing Images
+### Indexing Images ( Offiline )
 
 Process fashion images to build the search index:
 
@@ -205,7 +209,7 @@ python run_indexing.py
 
 --- 
 
-### Running Search Interface
+### Running Search Interface  ( Online)
 
 Launch the Streamlit web application:
 
@@ -297,14 +301,6 @@ This hybrid approach balances speed and accuracy.
   Batch processing during indexing
   Separate storage for vectors and metadata
   GPU acceleration for heavy model inference
-
-### Model Sizes
-
-- Qwen2-VL-2B-Instruct: ~4.5GB
-- Qwen2.5-0.5B-Instruct: ~1GB
-- BAAI/bge-large-en-v1.5: ~1.3GB
-- CLIP ViT-L/14: ~1.7GB
-- **Total:** ~8.5GB
 
 ## FAISS Index
 - Type: IndexFlatIP (Inner Product)
