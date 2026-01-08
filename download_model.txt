@@ -16,9 +16,3 @@ https://drive.google.com/drive/folders/1AmMQMtgYGXIdS-tfDHuOyPdSVdrnTOFm?usp=sha
 
 3 > Download the image-to-text model: Qwen/Qwen2-VL-2B-Instruct
     python -c "from transformers import Qwen2VLForConditionalGeneration, AutoProcessor; AutoProcessor.from_pretrained('Qwen/Qwen2-VL-2B-Instruct'); Qwen2VLForConditionalGeneration.from_pretrained('Qwen/Qwen2-VL-2B-Instruct')"
-
-
-
-.\venv\Scripts\activate
-
-pip install --upgrade "transformers>=4.45.0" "torch" "qwen-vl-utils" "accelerate"
