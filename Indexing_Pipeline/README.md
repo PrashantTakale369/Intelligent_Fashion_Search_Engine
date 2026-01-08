@@ -1,8 +1,6 @@
-# 🔍 Fashion Indexing Pipeline
+# 🔍 Fashion Indexing Pipeline 
 
-> **A beginner-friendly guide to setting up the AI-powered fashion image indexing system**
-
-This pipeline processes your fashion images through AI models and creates a searchable database. If you're new to this project, follow this guide step by step.
+This pipeline processes your fashion images through models and creates a searchable database. If you're new to this project, follow this guide step by step.
 
 ---
 
@@ -29,7 +27,7 @@ This pipeline processes your fashion images through AI models and creates a sear
 The Indexing Pipeline transforms your fashion images into searchable data using AI:
 
 ```
-Your Fashion Image → AI Processing → Searchable Database
+Your Fashion Image - AI Processing - Searchable Database
 ```
 
 **Example Flow:**
@@ -40,9 +38,6 @@ Your Fashion Image → AI Processing → Searchable Database
 4. AI Embedding:  [0.003, -0.021, 0.145, ... ] (1024 numbers)
 5. Storage:  Saved to database for fast searching
 ```
-
-**Why This Matters:** After indexing, you can search your images using natural language like "red dress" or "blue jacket" and get relevant results instantly.
-
 ---
 
 ## Main Architectre
@@ -61,9 +56,9 @@ Indexing_Pipeline/
 │   └── image_registry.py             # Track processed images
 │
 ├── 📁 models/
-│   ├── img_to_text_model.py          # Qwen2-VL (Image → Caption)
+│   ├── img_to_text_model.py          # Qwen2-VL (Image - Caption)
 │   ├── text_norm_model.py            # Qwen2.5 (Normalize text)
-│   └── embedding_model.py            # BGE (Text → Vector)
+│   └── embedding_model.py            # BGE (Text - Vector)
 │
 ├── 📁 logic/
 │   ├── caption_logic.py              # Captioning orchestration
@@ -105,15 +100,6 @@ Open terminal in the project root folder and run:
 pip install -r requirements.txt
 ```
 
-**What this installs:**
-- PyTorch (AI framework)
-- Transformers (for AI models)
-- PostgreSQL connector
-- FAISS (for fast search)
-- And more...
-
-⏳ This may take 5-10 minutes depending on your internet speed.
-
 ---
 
 ### Step 3: Download AI Models
@@ -133,7 +119,7 @@ python -c "from transformers import AutoTokenizer, AutoModel; AutoTokenizer.from
 
 ---
 
-💡 **Note:** Models download once and are cached. Next time will be instant!
+> **Note:** Models download once and are cached. Next time will be instant!
 
 ### Step 4: Setup PostgreSQL Database
 
@@ -224,8 +210,8 @@ Fashion_Pipline_Engines/
 ### How Many Images Do I Need?
 
 - **Testing:** Start with 10-20 images
-- **Small Project:** 100-500 images
-- **Production:** 1,000+ images
+- **Small Project:** 1000-3000 images
+- **Production:** 10000+ images
 
 ---
 
@@ -242,6 +228,8 @@ cd Intelligent_Fashion_Search_Engine
 # Run the indexing pipeline
 python Indexing_Pipeline/run_indexing.py
 ```
+
+---
 
 ### What Happens When You Run It?
 
@@ -279,15 +267,7 @@ Step 6: Build FAISS Index
    Processed: 4 images
    Time: 38 seconds (GPU) or 4.5 minutes (CPU)
 ```
-
-### Processing Time Estimates
-
-| Images | CPU Mode | GPU Mode (RTX 4060) |
-|--------|----------|---------------------|
-| 10     | ~6 min   | ~50 sec            |
-| 50     | ~30 min  | ~4 min             |
-| 100    | ~1 hour  | ~8 min             |
-| 500    | ~5 hours | ~40 min            |
+---
 
 ### Output Files
 
@@ -501,3 +481,4 @@ Output: "shirt | blue | plaid | button-up | short sleeve | black pants | sneaker
 Input: "shirt | blue | plaid | ..."
 Output: [0.003, -0.021, 0.145, ..., 0.089]  (1024 numbers)
 ```
+---
