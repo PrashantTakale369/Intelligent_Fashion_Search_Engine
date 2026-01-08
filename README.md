@@ -72,47 +72,108 @@ This project demonstrates how VLM + NLP + vector databases can solve this proble
 
 ## 🏆 Why Better Than Vanilla CLIP? : 
 
-1. First : What is a Vanilla CLIP System ?
+# Architecture Deep Dive
 
-  Vanilla CLIP approach in a simple way :
-      - a.Encode all images using CLIP Image Encoder
-      - b.Encode user query using CLIP Text Encoder
-      - c.Compare both embeddings
-      - d.Return top results
-  - Direct Cross-Modal Similarity
+This section explains how a vanilla CLIP-based search works, its limitations, and how our multi-stage, LLM-powered architecture improves accuracy, scalability, and robustness for fashion search.
 
-2. Our System
+## 1️ What Is a Vanilla CLIP System?
 
-   1. Deep Image Understanding
-      
-      - Vanilla CLIP
-        -Image to embedding directly
-        -No explicit understanding of:
-            - 1. Clothes
-            - 2. Colors
-            - 3. Accessories
-            - 4. Context
-      - Our System 
-        - Image to  *Rich text caption*  then embedding
-        - CLIP “looks” at the image but our system understands and explains the image
+### Vanilla CLIP Approach (Simple Flow)
 
-   3. LLM-Based Text Normalization
-      
-      - Normalizes both:
-          - 1. Image captions
-          - 2. User queries
-  
-   4. Two-Stage Retrieval
-      
-      - Stage 1: FAISS semantic search (Top 20)
-      - Stage 2: CLIP re-ranking (Top K)
-        
-   - Why this is better
-     
-     -  Fast search + precise ranking
-     -  Candidate Generation + Re-Rankin
+- Encode all images using CLIP Image Encoder
+- Encode the user query using CLIP Text Encoder
+- Compute similarity between image and text embeddings
+- Return top matching images
 
-Vanilla CLIP directly matches images and text, while our system first converts images into structured semantic text, normalizes both images and queries using LLMs, performs scalable semantic retrieval, and finally uses CLIP only for high-precision re-ranking giving better accuracy, robustness, and scalability
+
+## 2️ Our System: Industry-Grade Fashion Search Architecture
+
+Our system improves upon vanilla CLIP by breaking the problem into well-defined stages, each optimized for a specific task.
+
+### 2.1 Deep Image Understanding (Image → Text → Embedding)
+
+#### Vanilla CLIP
+
+- Image → embedding directly
+- No explicit modeling of:
+  - Clothing types
+  - Colors
+  - Accessories
+  - Scene or context
+
+#### Our Approach
+
+- Image → rich descriptive caption → embedding
+- Captions explicitly describe:
+  - Upper and lower body clothing
+  - Colors and materials
+  - Accessories
+  - Background and posture
+
+#### Why this is better
+
+- Text acts as a semantic abstraction layer
+- Fashion attributes become searchable and interpretable
+
+CLIP "looks" at the image, but our system understands and explains the image.
+
+### 2.2 LLM-Based Text Normalization
+
+We apply the same normalization logic to both image captions and user queries.
+
+#### What Gets Normalized
+
+- Generated image captions
+- User-entered search queries
+
+#### Why Normalization Matters
+
+- Removes noise and ambiguity
+- Handles synonyms and phrasing variations
+- Aligns image text and query text into the same semantic space
+
+This step dramatically improves embedding quality and retrieval consistency.
+
+### 2.3 Why We Use PostgreSQL (Metadata Store)
+
+#### What Is Stored
+
+- image_id
+- image_path
+- normalized_text
+
+Data is stored in structured relational columns, not JSON blobs.
+PostgreSQL acts as the source of truth, while FAISS focuses purely on vector similarity.
+
+### 2.4 Semantic Retrieval Using FAISS (Stage 1)
+
+#### What Happens
+
+- Normalized text - embedding
+- Query embedding is searched against image embeddings
+- Returns Top N = 20 candidate images
+
+#### Why FAISS
+- Optimized for high-dimensional vector search
+- Handles 1M+ embeddings efficiently
+
+This stage focuses on recall (finding all potentially relevant images).
+
+### 2.5 Two-Stage Retrieval with CLIP Re-Ranking (Stage 2)
+
+#### Re-Ranking Process
+
+- Top-N images from FAISS - CLIP Image Encoder
+- User query → CLIP Text Encoder
+- Cross-modal similarity is recomputed
+- Final Top-K images are selected
+
+#### Why Re-Ranking Works
+
+- FAISS = fast but approximate
+- CLIP = slower but precise
+- Combining both gives the best of both worlds
+This is the same architectural pattern used by large-scale search engines.
 
 ---
 
