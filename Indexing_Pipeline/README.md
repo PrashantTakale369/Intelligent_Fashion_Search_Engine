@@ -392,29 +392,6 @@ RuntimeError: CUDA out of memory. Tried to allocate X MiB
    ```
 ---
 
-## 📊 Performance Benchmarks
-
-### Processing Speed
-
-**Hardware:** RTX 4060, 16GB RAM, SSD
-
-| Dataset Size | CPU Time | GPU Time | Speedup |
-|--------------|----------|----------|---------|
-| 10 images    | 6 min    | 50 sec   | 7.2x    |
-| 100 images   | 60 min   | 8.5 min  | 7.1x    |
-| 500 images   | 5 hours  | 42 min   | 7.1x    |
-| 1000 images  | 10 hours | 85 min   | 7.1x    |
-
-### Accuracy Metrics
-
-The pipeline doesn't evaluate accuracy (that's for the retrieval pipeline), but model quality:
-
-- **Caption Quality:** Qwen2-VL is state-of-the-art vision-language model
-- **Embedding Quality:** BGE models rank #1 on MTEB leaderboard
-- **Search Relevance:** Depends on query normalization and reranking
-
----
-
 ## 🔄 What's Next?
 
 After indexing is complete, you can:
