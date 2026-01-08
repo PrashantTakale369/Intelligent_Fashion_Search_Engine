@@ -12,13 +12,15 @@ This pipeline processes your fashion images through models and creates a searcha
 ## 📖 Table of Contents
 
 1. [What This Pipeline Does](#what-this-pipeline-does)
-2. [What You Need Before Starting](#what-you-need-before-starting)
-3. [Step-by-Step Setup](#step-by-step-setup)
-4. [Preparing Your Dataset](#preparing-your-dataset)
-5. [Running the Pipeline](#running-the-pipeline)
-6. [Understanding the Files](#understanding-the-files)
-7. [Troubleshooting](#troubleshooting)
-8. [Advanced Configuration](#advanced-configuration)
+2. [Main Architectre](#MainArchitectre)
+3. [Step-by-Step Setup](#Step-by-StepSetup)
+4. [What You Need Before Starting](#what-you-need-before-starting)
+5. [Step-by-Step Setup](#step-by-step-setup)
+6. [Preparing Your Dataset](#preparing-your-dataset)
+7. [Running the Pipeline](#running-the-pipeline)
+8. [Understanding the Files](#understanding-the-files)
+9. [Troubleshooting](#troubleshooting)
+10. [Advanced Configuration](#advanced-configuration)
 
 ---
 
