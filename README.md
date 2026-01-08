@@ -72,11 +72,9 @@ This project demonstrates how VLM + NLP + vector databases can solve this proble
 
 ## 🏆 Why Better Than Vanilla CLIP? : 
 
-# Architecture Deep Dive
-
 This section explains how a vanilla CLIP-based search works, its limitations, and how our multi-stage, LLM-powered architecture improves accuracy, scalability, and robustness for fashion search.
 
-## 1️ What Is a Vanilla CLIP System?
+## 1️. What Is a Vanilla CLIP System?
 
 ### Vanilla CLIP Approach (Simple Flow)
 
@@ -86,7 +84,7 @@ This section explains how a vanilla CLIP-based search works, its limitations, an
 - Return top matching images
 
 
-## 2️ Our System: Industry-Grade Fashion Search Architecture
+## 2️. Our System: Industry-Grade Fashion Search Architecture
 
 Our system improves upon vanilla CLIP by breaking the problem into well-defined stages, each optimized for a specific task.
 
