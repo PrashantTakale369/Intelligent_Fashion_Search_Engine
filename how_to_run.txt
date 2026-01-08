@@ -4,8 +4,8 @@ FASHION SEARCH ENGINE - SETUP & RUN GUIDE
 
 STEP 1: CLONE THE REPOSITORY
 -----------------------------
-git clone https://github.com/PrashantTakale369/fashion.git
-cd fashion
+git clone https://github.com/PrashantTakale369/Intelligent_Fashion_Search_Engine.git
+cd Intelligent_Fashion_Search_Engine
 
 
 STEP 2: INSTALL DEPENDENCIES
@@ -48,12 +48,8 @@ STEP 5: PREPARE YOUR DATASET
 
 1. Navigate to: Dataset/Orignal_Dataset/
 2. Add your fashion images (.jpg files) to this folder
-3. Recommended sources:
-   - DeepFashion dataset
-   - Fashionpedia dataset
-   - Web scraping fashion websites
+3. Recommended sources : 
    
-See Dataset/Orignal_Dataset/README.md for detailed instructions.
 
 
 STEP 6: UPDATE MODEL PATHS IN CONFIG FILES
@@ -79,8 +75,6 @@ This will:
 - Store in PostgreSQL database
 - Build FAISS index
 
-(Processing time: ~2-3 seconds per image on RTX 4060)
-
 
 STEP 8: RUN THE STREAMLIT WEB APP
 ----------------------------------
@@ -88,35 +82,6 @@ cd ..
 python -m streamlit run app.py
 
 The app will open at: http://localhost:8501
-
-
-STEP 9: TEST THE SEARCH
-------------------------
-1. Open the web app in your browser
-2. Enter a search query (e.g., "red dress", "blue jeans")
-3. Adjust number of results (1-10)
-4. Click "Search" button
-5. View results with similarity scores
-
-
-==================================================================================
-TROUBLESHOOTING
-==================================================================================
-
-Issue: ModuleNotFoundError for faiss
-Solution: pip install faiss-cpu
-
-Issue: Database connection error
-Solution: Check PostgreSQL is running and credentials in config files
-
-Issue: CUDA out of memory
-Solution: Reduce batch_size in indexing.yaml
-
-Issue: Streamlit not starting
-Solution: Use "python -m streamlit run app.py" instead of "streamlit run app.py"
-
-Issue: No search results
-Solution: Verify FAISS index exists at Indexing_Pipeline/storage/faiss_index.bin
 
 
 ==================================================================================
