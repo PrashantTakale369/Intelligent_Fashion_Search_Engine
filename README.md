@@ -85,32 +85,35 @@ This project demonstrates how VLM + NLP + vector databases can solve this proble
 2. Our System
 
    1. Deep Image Understanding
+      
+      - Vanilla CLIP
+            - Image to embedding directly
+            - No explicit understanding of:
+                - Clothes
+                - Colors
+                - Accessories
+                - Context
+      - Our System 
+        - Image to  *Rich text caption*  then embedding
+        - CLIP “looks” at the image but our system understands and explains the image
 
-      > Vanilla CLIP
-            Image to embedding directly
-            No explicit understanding of:
-              1. Clothes
-              2. Colors
-              3. Accessories
-              4. Context
-      > Our System 
-        > Image to  *Rich text caption*  then embedding
-        > CLIP “looks” at the image but our system understands and explains the image
-
-
-  2. LLM-Based Text Normalization
-          
-   > Normalizes both:
-      1. Image captions
-      2. User queries
+   3. LLM-Based Text Normalization
+      
+      - Normalizes both:
+          - 1. Image captions
+          - 2. User queries
   
-  3. Two-Stage Retrieval
-     > Stage 1: FAISS semantic search (Top 20)
-     > Stage 2: CLIP re-ranking (Top K)
+   4. Two-Stage Retrieval
+      
+      - Stage 1: FAISS semantic search (Top 20)
+      - Stage 2: CLIP re-ranking (Top K)
+        
+   - Why this is better
+     
+     -  Fast search + precise ranking
+     -  Candidate Generation + Re-Rankin
 
-   Why this is better
-     1. Fast search + precise ranking
-     2. Candidate Generation + Re-Ranking
+Vanilla CLIP directly matches images and text, while our system first converts images into structured semantic text, normalizes both images and queries using LLMs, performs scalable semantic retrieval, and finally uses CLIP only for high-precision re-ranking — giving better accuracy, robustness, and scalability
 
 ---
 
