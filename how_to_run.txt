@@ -1,6 +1,5 @@
-==================================================================================
-FASHION SEARCH ENGINE - SETUP & RUN GUIDE
-==================================================================================
+
+# FASHION SEARCH ENGINE - SETUP & RUN GUIDE
 
 STEP 1: CLONE THE REPOSITORY
 -----------------------------
@@ -8,10 +7,15 @@ git clone https://github.com/PrashantTakale369/Intelligent_Fashion_Search_Engine
 cd Intelligent_Fashion_Search_Engine
 
 
+---- 
+
+
 STEP 2: INSTALL DEPENDENCIES
 -----------------------------
 pip install -r requirements.txt
 
+
+---
 
 STEP 3: SETUP POSTGRESQL DATABASE
 ----------------------------------
@@ -30,6 +34,9 @@ STEP 3: SETUP POSTGRESQL DATABASE
    (This removes all indexed data - use this for a clean start)
 
 
+---
+
+
 STEP 4: DOWNLOAD MODELS
 ------------------------
 Download the following models and place them in your project:
@@ -42,6 +49,8 @@ Download the following models and place them in your project:
 See download_model.txt for model download links and paths.
 
 
+---
+
 STEP 5: PREPARE YOUR DATASET
 -----------------------------
 **IMPORTANT: Dataset folder is now created but empty!**
@@ -50,6 +59,10 @@ STEP 5: PREPARE YOUR DATASET
 2. Add your fashion images (.jpg files) to this folder
 3. Recommended sources : 
    
+
+
+---
+
 
 
 STEP 6: UPDATE MODEL PATHS IN CONFIG FILES
@@ -61,6 +74,10 @@ Edit the following configuration files with your local model paths:
    
 2. Retrieval_Pipeline/config/retrieval.yaml
    - Update all model_path fields with your local paths
+
+
+---
+
 
 
 STEP 7: RUN INDEXING PIPELINE
@@ -76,6 +93,10 @@ This will:
 - Build FAISS index
 
 
+
+----
+
+
 STEP 8: RUN THE STREAMLIT WEB APP
 ----------------------------------
 cd ..
@@ -84,9 +105,10 @@ python -m streamlit run app.py
 The app will open at: http://localhost:8501
 
 
-==================================================================================
-OPTIONAL: CLEAR DATABASE AND RE-INDEX
-==================================================================================
+-----
+
+
+OPTIONAL: BUT CLEAR DATABASE AND RE-INDEX
 
 To start fresh:
 cd Indexing_Pipeline/scripts
@@ -95,8 +117,3 @@ cd ..
 python run_indexing.py
 
 
-==================================================================================
-For detailed documentation, see:
-- Indexing_Pipeline/README.md (Complete indexing guide)
-- Retrieval_Pipeline/README.md (Complete retrieval guide)
-==================================================================================
