@@ -259,16 +259,6 @@ cd Indexing_Pipeline
 python run_indexing.py
 ```
 
-**Expected Output:**
-```
-✓ Loaded no of  images
-✓ Generated captions
-✓ Normalized text 
-✓ Created embeddings
-✓ Saved to PostgreSQL 
-✓ Built FAISS index 
-```
-
 --- 
 
 ### Running Search Interface  ( Online)
