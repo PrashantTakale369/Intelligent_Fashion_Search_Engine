@@ -64,7 +64,6 @@ This project demonstrates how VLM + NLP + vector databases can solve this proble
 
 ---
 
-
 ### System Architecture : 
 
 <img width="1761" height="2201" alt="intelligent_Search_Engine_Final_Arch drawio" src="https://github.com/user-attachments/assets/59f9d6a0-b057-4421-8c5c-6638cf207364" />
@@ -73,26 +72,26 @@ This project demonstrates how VLM + NLP + vector databases can solve this proble
 
 ## 🏆 Why Better Than Vanilla CLIP? : 
 
-1. First: What is a Vanilla CLIP System ?
+1. First : What is a Vanilla CLIP System ?
 
   Vanilla CLIP approach in a simple way :
-      a.Encode all images using CLIP Image Encoder
-      b.Encode user query using CLIP Text Encoder
-      c.Compare both embeddings
-      d.Return top results
-   Direct Cross-Modal Similarity
+      - a.Encode all images using CLIP Image Encoder
+      - b.Encode user query using CLIP Text Encoder
+      - c.Compare both embeddings
+      - d.Return top results
+  - Direct Cross-Modal Similarity
 
 2. Our System
 
    1. Deep Image Understanding
       
       - Vanilla CLIP
-            - Image to embedding directly
-            - No explicit understanding of:
-                - Clothes
-                - Colors
-                - Accessories
-                - Context
+        -Image to embedding directly
+        -No explicit understanding of:
+            - 1. Clothes
+            - 2. Colors
+            - 3. Accessories
+            - 4. Context
       - Our System 
         - Image to  *Rich text caption*  then embedding
         - CLIP “looks” at the image but our system understands and explains the image
@@ -113,7 +112,7 @@ This project demonstrates how VLM + NLP + vector databases can solve this proble
      -  Fast search + precise ranking
      -  Candidate Generation + Re-Rankin
 
-Vanilla CLIP directly matches images and text, while our system first converts images into structured semantic text, normalizes both images and queries using LLMs, performs scalable semantic retrieval, and finally uses CLIP only for high-precision re-ranking — giving better accuracy, robustness, and scalability
+Vanilla CLIP directly matches images and text, while our system first converts images into structured semantic text, normalizes both images and queries using LLMs, performs scalable semantic retrieval, and finally uses CLIP only for high-precision re-ranking giving better accuracy, robustness, and scalability
 
 ---
 
@@ -238,17 +237,17 @@ python run_test.py
 
 ### **Step 1: Indexing (One-time Setup)**
 1. Load fashion images from `Dataset/`
-2. AI describes each image → "red dress with floral pattern"
-3. Clean the description → "elegant red dress floral pattern women"
-4. Convert text to numbers (vector) → [0.23, 0.45, ..., 0.89]
+2. AI describes each image  :  "red dress with floral pattern"
+3. Clean the description  :    "elegant red dress floral pattern women"
+4. Convert text to numbers (vector)  : [0.23, 0.45, ..., 0.89]
 5. Save to database / vector index (FAISS)
 
 ### **Step 2: Search (Every Query)**
-1. User types: "blue summer dress"
-2. Clean query → "blue summer dress women"
-3. Convert to vector → [0.12, 0.78, ..., 0.34]
-4. FAISS finds 50 similar vectors → get matching images
-5. CLIP AI visually reranks → best 10 results
+1. User types: "A person in a bright yellow raincoat"
+2. Clean query : "person wearing a bright yellow raincoat"
+3. Convert to vector :  [0.12, 0.78, ..., 0.34]
+4. FAISS finds 50 similar vectors : get matching images
+5. CLIP AI visually reranks :  best 10 results
 6. Display images
 
 ---
