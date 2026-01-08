@@ -11,12 +11,13 @@ This project demonstrates how VLM + NLP + vector databases can solve this proble
 ## 📋 Table of Contents : 
 
 - [Key Features](#Key_Features)
-- [Prerequisites](#prerequisites)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Pipeline Details](#pipeline-details)
+- [System Architecture Overview](#SystemArchitectureOverview)
+- [Why Better Than Vanilla CLIP ?](#WhyBetterThanVanillaCLIP?)
+- [Technology Stack](#TechnologyStack)
+- [SetUp : ( Offline +  Online )](#SetUpSetUpOfflineOnline)
+- [Main Architecture](#MainArchitecture)
 - [Configuration](#configuration)
-- [Performance](#performance)
+- [Search Quality](#SearchQuality)
 
 ---
 
