@@ -291,6 +291,8 @@ cd Retrieval_Pipeline
 python run_test.py
 ```
 
+### Stuck : reade this How_to_run.txt
+
 --- 
 
 ## How This Work 
