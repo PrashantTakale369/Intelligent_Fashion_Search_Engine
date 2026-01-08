@@ -1,11 +1,8 @@
-r# 🔍 Fashion Retrieval Pipeline - Search Your Images
+# 🔍 Fashion Retrieval Pipeline - Search Your Images
 
 This pipeline lets you search through your fashion images using everyday language like "red dress" or "blue jacket". If you're new to this project, follow this guide step by step.
 
 ---
-
-## Main Architectre
-<img width="1517" height="1212" alt="Retrieval_Pipeline drawio" src="https://github.com/user-attachments/assets/9d821c06-64c9-403e-a15f-eb598a9074eb" />
 
 
 ## 📖 Table of Contents
@@ -18,6 +15,11 @@ This pipeline lets you search through your fashion images using everyday languag
 6. [Understanding the Files](#understanding-the-files)
 7. [Troubleshooting](#troubleshooting)
 8. [Advanced Configuration](#advanced-configuration)
+
+---
+
+## Main Architectre
+<img width="1517" height="1212" alt="Retrieval_Pipeline drawio" src="https://github.com/user-attachments/assets/9d821c06-64c9-403e-a15f-eb598a9074eb" />
 
 ---
 
