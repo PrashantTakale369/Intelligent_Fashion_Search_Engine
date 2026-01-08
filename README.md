@@ -293,7 +293,7 @@ python run_test.py
 ---
 
 ### Still Stuck : 
-[Follow This :]( Intelligent_Fashion_Search_Engine/how_to_run.txt)
+[Follow This :]([ Intelligent_Fashion_Search_Engine/how_to_run.txt](https://github.com/PrashantTakale369/Intelligent_Fashion_Search_Engine/blob/main/how_to_run.txt))
 
 --- 
 
