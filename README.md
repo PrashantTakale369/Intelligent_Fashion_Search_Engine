@@ -292,7 +292,7 @@ python run_test.py
 ```
 ---
 
-### Stuck : reade this How_to_run.txt (https://github.com/PrashantTakale369/Intelligent_Fashion_Search_Engine/blob/main/how_to_run.txt)
+### Stuck : reade this How_to_run.txt : Intelligent_Fashion_Search_Engine/how_to_run.txt
 
 --- 
 
