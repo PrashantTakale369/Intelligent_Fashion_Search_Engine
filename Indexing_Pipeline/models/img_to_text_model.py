@@ -9,15 +9,19 @@ from typing import List, Union
 
 
 class ImageToTextModel:
+
     """Wrapper for Qwen2-VL-2B-Instruct model"""
     
     def __init__(self, model_path: str, device: str = "cuda"):
+
         """
+
         Initialize the image to text model
         
         Args:
             model_path: Path to the local model
             device: Device to run model on (cuda/cpu)
+
         """
         self.device = device
         self.model = Qwen2VLForConditionalGeneration.from_pretrained(
@@ -41,9 +45,11 @@ class ImageToTextModel:
             Generated caption describing fashion items
         """
         # Load image
+        
         image = Image.open(image_path).convert('RGB')
         
         # Prepare prompt for fashion description
+
         messages = [
             {
                 "role": "user",
@@ -53,19 +59,22 @@ class ImageToTextModel:
                         "image": image_path,
                     },
                     {
-                        "type": "text", 
-                        "text": """
-                        You are a professional fashion image caption generator for an intelligent fashion search engine. 
-                        Describe the image in one clear in short line statement but correct including
-                        Upper body clothing with type and color  exapmle : black shirt.
-                        body clothing with type and color example : blue jeans.
-                        visible accessories with color example : red tai,black hat
-                        Background or environment if relevant example : office,indoor,city street,park etc.
-                        Posture or action if visible exaple : standing,walking,sitting etc.
-                        
-                        Focus only on visible, factual details dont guess.
-                        Example:
-                        "A person wearing a bright yellow raincoat and black pants, standing outdoors on a city street."
+                       """ 
+                       You are a professional fashion image caption generator for an intelligent fashion search engine.\n"
+                       
+                        "Describe the image in ONE clear, short, and accurate sentence.\n\n"
+                        "Include ONLY the following if clearly visible:\n"
+                        "- Upper body clothing with type and color (e.g., black shirt).\n"
+                        "- Lower body clothing with type and color (e.g., blue jeans).\n"
+                        "- Visible accessories with color (e.g., red tie, black hat).\n"
+                        "- Background or environment if relevant (e.g., office, indoor, city street, park).\n"
+                        "- Posture or action if visible (e.g., standing, walking, sitting).\n\n"
+                        "Rules:\n"
+                        "- Focus only on visible and factual details.\n"
+                        "- Do NOT guess, infer, or add extra information.\n"
+                        "- Do NOT describe emotions, style, or intent.\n\n"
+                        "Example:\n"
+                        "\"A person wearing a bright yellow raincoat and black pants, standing outdoors on a city street.\""
                         
                         """,
                     },
@@ -74,6 +83,7 @@ class ImageToTextModel:
         ]
         
         # Prepare for inference
+
         text = self.processor.apply_chat_template(
             messages, tokenize=False, add_generation_prompt=True
         )
@@ -88,6 +98,7 @@ class ImageToTextModel:
         inputs = inputs.to(self.device)
         
         # Generate
+
         with torch.no_grad():
             generated_ids = self.model.generate(**inputs, max_new_tokens=128)
         
@@ -102,6 +113,7 @@ class ImageToTextModel:
         return output_text[0]
     
     def generate_captions_batch(self, image_paths: List[str]) -> List[str]:
+
         """
         Generate captions for multiple images
         
@@ -111,6 +123,7 @@ class ImageToTextModel:
         Returns:
             List of generated captions
         """
+
         captions = []
         for image_path in image_paths:
             try:
