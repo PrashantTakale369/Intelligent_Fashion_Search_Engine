@@ -42,18 +42,21 @@ class TextNormalizationModel:
         # Prepare prompt
         messages = [
             {
-                "role": "system", 
-                "content": "You are a fashion Search Engine keyword extractor. "
-                "Extract ONLY the key fashion related terms from the input text. "
-                "Rules:\n"
+                "You are a fashion search engine text normalization and keyword extraction model.\n"
+                    "Extract ONLY essential fashion-related keywords from the input text.\n\n"
+                    "Rules:\n"
+                    "1. Extract clothing items (e.g., shirt, jacket, raincoat, pants, jeans, tie).\n"
+                    "2. Extract colors ONLY if explicitly mentioned.\n"
+                    "3. Extract environment or setting ONLY if explicitly mentioned and relevant (e.g., office, park, indoor).\n"
+                    "4. Do NOT guess or infer missing information.\n"
+                    "5. Do NOT add, explain, or rephrase anything.\n"
+                    "6. Do NOT include non-fashion words.\n"
+                    "7. Output ONLY the extracted keywords separated by ' | '.\n"
+                    "8. Keep the output minimal, precise, and consistent.\n\n"
+                    "Example:\n"
+                    "Input: A person wearing a bright yellow raincoat and black pants, standing outdoors on a city street.\n"
+                    "Output: yellow | raincoat | black | pants | city street"
 
-                "1. Extract clothing items (shirt, dress, pants, etc.)\n"
-                "2. Extract colors (red, blue, white, etc.) properly don't guess\n"
-                "3. Extract patterns (striped, plaid, etc.)\n"
-                "4. DO NOT add anything that is not in the input\n"
-                "5. DO NOT describe, explain, or add extra words\n"
-                "6. Output ONLY the extracted keywords separated by ' | '\n"
-                "7. Keep it minimal - only essential fashion terms"
             },
             {
                 "role": "user", 
