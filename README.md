@@ -24,7 +24,7 @@ This project demonstrates how VLM + NLP + vector databases can solve this proble
 ## ✨ Key Features : 
 
 1. Natural language fashion search (no hard-coded filters)
-2. Image → Text understanding using Vision-Language Models
+2. Image - Text understanding using Vision-Language Models
 3. Robust text normalization using LLMs
 4. Fast semantic search using FAISS (vector database)
 5. Accurate results using CLIP-based re-ranking
@@ -93,7 +93,7 @@ Our system improves upon vanilla CLIP by breaking the problem into well-defined 
 
 #### Vanilla CLIP
 
-- Image → embedding directly
+- Image : embedding directly
 - No explicit modeling of:
   - Clothing types
   - Colors
@@ -102,7 +102,7 @@ Our system improves upon vanilla CLIP by breaking the problem into well-defined 
 
 #### Our Approach
 
-- Image → rich descriptive caption → embedding
+- Image : rich descriptive caption : embedding
 - Captions explicitly describe:
   - Upper and lower body clothing
   - Colors and materials
@@ -163,7 +163,7 @@ This stage focuses on recall (finding all potentially relevant images).
 #### Re-Ranking Process
 
 - Top-N images from FAISS - CLIP Image Encoder
-- User query → CLIP Text Encoder
+- User query - CLIP Text Encoder
 - Cross-modal similarity is recomputed
 - Final Top-K images are selected
 
@@ -198,8 +198,8 @@ This is the same architectural pattern used by large-scale search engines.
 
 | Component            | Requirement                                           |
 | -------------------- | ----------------------------------------------------- |
-| Programming Language | Python 3.13+                                          |
-| Database             | PostgreSQL 18                                         |
+| Programming Language | Python                                                |
+| Database             | PostgreSQL                                            |
 | GPU                  | NVIDIA GPU with CUDA (optional but recommended)       |
 | Memory (RAM)         | 8 GB or higher                                        |
 | Disk Space           | ~10 GB (for models and indexes)                       |
