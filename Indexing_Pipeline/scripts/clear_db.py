@@ -14,7 +14,7 @@ def clear_database():
             port=5432,
             dbname="fashion_search",
             user="postgres",
-            password="1234"
+            password="123"
         )
         
         cursor = conn.cursor()

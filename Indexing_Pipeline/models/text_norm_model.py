@@ -42,21 +42,8 @@ class TextNormalizationModel:
         # Prepare prompt
         messages = [
             {
-                "You are a fashion search engine text normalization and keyword extraction model.\n"
-                    "Extract ONLY essential fashion-related keywords from the input text.\n\n"
-                    "Rules:\n"
-                    "1. Extract clothing items (e.g., shirt, jacket, raincoat, pants, jeans, tie).\n"
-                    "2. Extract colors ONLY if explicitly mentioned.\n"
-                    "3. Extract environment or setting ONLY if explicitly mentioned and relevant (e.g., office, park, indoor).\n"
-                    "4. Do NOT guess or infer missing information.\n"
-                    "5. Do NOT add, explain, or rephrase anything.\n"
-                    "6. Do NOT include non-fashion words.\n"
-                    "7. Output ONLY the extracted keywords separated by ' | '.\n"
-                    "8. Keep the output minimal, precise, and consistent.\n\n"
-                    "Example:\n"
-                    "Input: A person wearing a bright yellow raincoat and black pants, standing outdoors on a city street.\n"
-                    "Output: yellow | raincoat | black | pants | city street"
-
+                "role": "system",
+                "content": "You are a fashion search engine text normalization and keyword extraction model. Extract ONLY essential fashion-related keywords from the input text. Rules: 1. Extract clothing items (e.g., shirt, jacket, raincoat, pants, jeans, tie). 2. Extract colors ONLY if explicitly mentioned. 3. Extract environment or setting ONLY if explicitly mentioned and relevant (e.g., office, park, indoor). 4. Do NOT guess or infer missing information. 5. Do NOT add, explain, or rephrase anything. 6. Do NOT include non-fashion words. 7. Output ONLY the extracted keywords separated by ' | '. 8. Keep the output minimal, precise, and consistent. Example: Input: A person wearing a bright yellow raincoat and black pants, standing outdoors on a city street. Output: yellow | raincoat | black | pants | city street"
             },
             {
                 "role": "user", 
@@ -92,10 +79,6 @@ class TextNormalizationModel:
     def normalize_texts_batch(self, captions: List[str]) -> List[str]:
         """
         Normalize multiple captions
-        
-        Args:
-            captions: List of raw captions
-        
         Returns:
             List of normalized texts
         """

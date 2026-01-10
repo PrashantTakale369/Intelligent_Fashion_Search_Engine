@@ -1,5 +1,6 @@
 """
 Image → caption logic
+
 """
 from typing import List
 from models.img_to_text_model import ImageToTextModel
@@ -13,12 +14,14 @@ class CaptionGenerator:
     """Handle caption generation from images"""
     
     def __init__(self, model: ImageToTextModel):
+        
         """ Initialize caption generator """
         self.model = model
     
     def process_single(self, image_path: str) -> str:
+
         """ Generate caption for single image from image_path: Path to image
-        Returns: Generated caption
+            Returns: Generated caption
         """
         logger.info(f"Generating caption for: {image_path}")
         caption = self.model.generate_caption(image_path)

@@ -28,7 +28,7 @@ models:
 
 # Dataset configuration
 dataset:
-  image_dir: "Intelligent_Fashion_Search_Engine/Dataset/Orignal_Dataset" #Update all model_path fields with your local paths
+  image_dir: "Dataset/Orignal_Dataset" #Update all model_path fields with your local paths
   supported_formats: [".jpg", ".jpeg", ".png"]
   batch_size: 4           
 
@@ -39,7 +39,7 @@ database:
     port: 5432
     dbname: "fashion_search"
     user: "postgres"
-    password: "1234"
+    password: "123"
     table_name: "fashion_images"
   
   faiss:

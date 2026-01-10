@@ -11,7 +11,7 @@ try:
         port=5432,
         dbname="postgres",  # Connect to default database
         user="postgres",
-        password="1234"
+        password="123"
     )
     conn.set_isolation_level(ISOLATION_LEVEL_AUTOCOMMIT)
     cursor = conn.cursor()
