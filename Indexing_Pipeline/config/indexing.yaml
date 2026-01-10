@@ -28,7 +28,7 @@ models:
 
 # Dataset configuration
 dataset:
-  image_dir: "C:/Users/Admin/Downloads/Fashion_Pipline_Engines/Dataset/Orignal_Dataset" #Update all model_path fields with your local paths
+  image_dir: "Intelligent_Fashion_Search_Engine/Dataset/Orignal_Dataset" #Update all model_path fields with your local paths
   supported_formats: [".jpg", ".jpeg", ".png"]
   batch_size: 4           
 
