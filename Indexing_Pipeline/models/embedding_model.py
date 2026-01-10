@@ -39,6 +39,7 @@ class EmbeddingModel:
         
         # Generate embedding
         with torch.no_grad():
+
             model_output = self.model(**encoded_input)
             # Use CLS token embedding (first token)
             embeddings = model_output[0][:, 0]
@@ -53,6 +54,7 @@ class EmbeddingModel:
         Generate embeddings for multiple texts
         Returns: Array of embedding vectors
         """
+        
         # Tokenize batch
         encoded_input = self.tokenizer(
             texts,
