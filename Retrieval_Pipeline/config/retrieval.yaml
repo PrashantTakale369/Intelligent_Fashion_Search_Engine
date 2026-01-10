@@ -10,7 +10,7 @@ database:
     table_name: fashion_images
     user: postgres
 dataset:
-  image_dir: C:/Users/Admin/Downloads/Fashion_Pipline_Engines/Dataset/Orignal_Dataset
+  image_dir: Intelligent_Fashion_Search_Engine/Dataset/Orignal_Dataset
 models:
   embedding:
     device: cuda
