@@ -58,25 +58,8 @@ class ImageToTextModel:
                         "type": "image",
                         "image": image_path,
                     },
-                    {
-                       """ 
-                       You are a professional fashion image caption generator for an intelligent fashion search engine.\n"
-                       
-                        "Describe the image in ONE clear, short, and accurate sentence.\n\n"
-                        "Include ONLY the following if clearly visible:\n"
-                        "- Upper body clothing with type and color (e.g., black shirt).\n"
-                        "- Lower body clothing with type and color (e.g., blue jeans).\n"
-                        "- Visible accessories with color (e.g., red tie, black hat).\n"
-                        "- Background or environment if relevant (e.g., office, indoor, city street, park).\n"
-                        "- Posture or action if visible (e.g., standing, walking, sitting).\n\n"
-                        "Rules:\n"
-                        "- Focus only on visible and factual details.\n"
-                        "- Do NOT guess, infer, or add extra information.\n"
-                        "- Do NOT describe emotions, style, or intent.\n\n"
-                        "Example:\n"
-                        "\"A person wearing a bright yellow raincoat and black pants, standing outdoors on a city street.\""
-                        
-                        """,
+                    {"type": "text",
+                        "text": "You are a professional fashion image caption generator for an intelligent fashion search engine. Describe the image in ONE clear, short, and accurate sentence. Include ONLY the following if clearly visible: Upper body clothing with type and color (e.g., black shirt). Lower body clothing with type and color (e.g., blue jeans). Visible accessories with color (e.g., red tie, black hat). Background or environment if relevant (e.g., office, indoor, city street, park). Posture or action if visible (e.g., standing, walking, sitting). Rules: Focus only on visible and factual details. Do NOT guess, infer, or add extra information. Do NOT describe emotions, style, or intent."
                     },
                 ],
             }
@@ -87,6 +70,8 @@ class ImageToTextModel:
         text = self.processor.apply_chat_template(
             messages, tokenize=False, add_generation_prompt=True
         )
+
+
         image_inputs, video_inputs = process_vision_info(messages)
         inputs = self.processor(
             text=[text],
@@ -95,6 +80,8 @@ class ImageToTextModel:
             padding=True,
             return_tensors="pt",
         )
+
+
         inputs = inputs.to(self.device)
         
         # Generate
